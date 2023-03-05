@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewLife.Web.Models;
+using Newlife.Web.Core.ViewModels;
 using System.Diagnostics;
 
 namespace NewLife.Web.Controllers

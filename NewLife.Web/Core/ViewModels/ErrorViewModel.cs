@@ -1,4 +1,4 @@
-namespace NewLife.Web.Models
+namespace Newlife.Web.Core.ViewModels
 {
     public class ErrorViewModel
     {
