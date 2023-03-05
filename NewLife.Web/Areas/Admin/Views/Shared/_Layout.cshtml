@@ -47,6 +47,8 @@ License: For each use you must have a valid license purchased only from above li
 	<link href="~/assets/admin/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
 	<!-- <link href="~/assets/admin/css/style.bundle.css" rel="stylesheet" type="text/css" /> -->
 	<link href="~/assets/admin/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 	<!--end::Global Stylesheets Bundle-->
 
 
@@ -69,7 +71,7 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					<!--begin::Header-->
-					<partial name="_Header">
+					<partial name="_Header" >
 						<!--end::Header-->
 						<!--begin::Content wrapper-->
 						<div class="d-flex flex-column-fluid">
@@ -123,10 +125,11 @@ License: For each use you must have a valid license purchased only from above li
 	<!--begin::Global Javascript Bundle(mandatory for all pages)-->
 	<script src="~/assets/admin/plugins/global/plugins.bundle.js"></script>
 	<script src="~/assets/admin/js/scripts.bundle.js"></script>
+	<script src="~/js/site.js" defer asp-append-version="true"></script>
+
+
 	<!--end::Global Javascript Bundle-->
-	<!--begin::Vendors Javascript(used for this page only)-->
 	
-	<!--end::Vendors Javascript-->
 	<!--begin::Custom Javascript(used for this page only)-->
 	
 	@await RenderSectionAsync("Scripts", required: false)
