@@ -5,7 +5,7 @@ namespace NewLife.Web.Seed
 {
     public static class DefaultRoles
     {
-        public static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
+        public static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
         {
 
             if (!roleManager.Roles.Any())

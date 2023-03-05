@@ -5,7 +5,7 @@ namespace NewLife.Web.Seed
 {
     public static class DefaultUsers
     {
-        public static async Task SeedAdmin(UserManager<IdentityUser> userManager)
+        public static async Task SeedAdminAsync(UserManager<IdentityUser> userManager)
         {
             var admin = new IdentityUser {
                 UserName = "admin",
