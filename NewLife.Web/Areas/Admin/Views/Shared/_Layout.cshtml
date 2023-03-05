@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <!--
 Author: Keenthemes
 Product Name: Metronic
@@ -38,14 +40,17 @@ License: For each use you must have a valid license purchased only from above li
 	<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 	<!--end::Fonts-->
 	<!--begin::Vendor Stylesheets(used for this page only)-->
-	<link href="~/assets/admin/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="~/assets/admin/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+	@await RenderSectionAsync("css", required: false)
+
 	<!--end::Vendor Stylesheets-->
 	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
 	<link href="~/assets/admin/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
 	<!-- <link href="~/assets/admin/css/style.bundle.css" rel="stylesheet" type="text/css" /> -->
 	<link href="~/assets/admin/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
 	<!--end::Global Stylesheets Bundle-->
+
+
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -56,38 +61,44 @@ License: For each use you must have a valid license purchased only from above li
 	<!--end::Theme mode setup on page load-->
 	<!--begin::Main-->
 	<!--begin::Root-->
-	<div class="d-flex flex-column flex-root">
-		<!--begin::Page-->
-		<div class="page d-flex flex-row flex-column-fluid">
-			<!--begin::Wrapper-->
-			<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-				<!--begin::Header-->
-				<partial name="_Header">
-				<!--end::Header-->
-				<!--begin::Content wrapper-->
-				<div class="d-flex flex-column-fluid">
-					<!--begin::Aside-->
-					<partial name="_Aside">
-					<!--end::Aside-->
-					<!--begin::Container-->
-					<div class="d-flex flex-column flex-column-fluid container-fluid">
-						<!--begin::Post-->
-						<div class="content flex-column-fluid" id="kt_content">
-							@RenderBody()
+	@if (SignInManager.IsSignedIn(User))
+	{
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+					<!--begin::Header-->
+					<partial name="_Header">
+						<!--end::Header-->
+						<!--begin::Content wrapper-->
+						<div class="d-flex flex-column-fluid">
+							<!--begin::Aside-->
+							<partial name="_Aside">
+								<!--end::Aside-->
+								<!--begin::Container-->
+								<div class="d-flex flex-column flex-column-fluid container-fluid">
+									<!--begin::Post-->
+									<div class="content flex-column-fluid" id="kt_content">
+										@RenderBody()
+									</div>
+									<!--end::Post-->
+									<!--begin::Footer-->
+									<partial name="_Footer">
+										<!--end::Footer-->
+								</div>
+								<!--end::Container-->
 						</div>
-						<!--end::Post-->
-						<!--begin::Footer-->
-						<partial name="_Footer">
-						<!--end::Footer-->
-					</div>
-					<!--end::Container-->
+						<!--end::Content wrapper-->
 				</div>
-				<!--end::Content wrapper-->
+				<!--end::Wrapper-->
 			</div>
-			<!--end::Wrapper-->
+			<!--end::Page-->
 		</div>
-		<!--end::Page-->
-	</div>
+	}
+	else{
+		@RenderBody()
+	}
 	<!--end::Root-->
 	<!--begin::Drawers-->
 	<
@@ -118,8 +129,10 @@ License: For each use you must have a valid license purchased only from above li
 	<!--end::Vendors Javascript-->
 	<!--begin::Custom Javascript(used for this page only)-->
 	
+	@await RenderSectionAsync("Scripts", required: false)
 	<!--end::Custom Javascript-->
 	<!--end::Javascript-->
+
 </body>
 <!--end::Body-->
 
