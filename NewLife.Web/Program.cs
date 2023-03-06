@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Newlife.Web.Core.Interfaces;
 using Newlife.Web.Repositories;
 using NewLife.Web.Data;
+using NewLife.Web.Mapping;
 using NewLife.Web.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +19,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI().AddDefaultTokenProviders();
 
+
+
 //builder.Services.AddScoped(typeof(IBaseRepository<>),typeof(BaseRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddMapping();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
