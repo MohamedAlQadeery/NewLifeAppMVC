@@ -1,0 +1,21 @@
+﻿@model CoachViewModel
+
+
+<tr class="js-row-@Model.Id">
+    <td>@Model.Name</td>
+    <td>
+        <span class="badge badge-light-@(Model.IsActive ? "danger" : "success")">
+            @(Model.IsActive ? "Deleted" : "Available")
+
+
+        </span>
+    </td>
+    <td>created at</td>
+    <td>updated at</td>
+    <td>
+        @*  <a class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.Id">
+        Edit
+        </a>*@
+    button
+    </td>
+</tr>

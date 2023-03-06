@@ -20,8 +20,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddDefaultUI().AddDefaultTokenProviders();
 
 
-
-//builder.Services.AddScoped(typeof(IBaseRepository<>),typeof(BaseRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddMapping();
 builder.Services.AddControllersWithViews();
