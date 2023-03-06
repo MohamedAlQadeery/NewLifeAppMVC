@@ -85,3 +85,34 @@
     </div>
 
 </div>
+
+
+@section Scripts{
+
+    <script defer>
+        document.querySelector('body').addEventListener('click', function (event) {
+            if (event.target.classList.contains('js-toggle-btn')) {
+                event.preventDefault();
+                console.log(event);
+                let id = event.target.dataset.id;
+
+                Swal.fire({
+                    title: 'هل انت متأكد ؟',
+                    text: "هل انت متأكد من تغيير حالة المدرب ؟",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'نعم,متأكد',
+                    cancelButtonText: 'الغاء',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        ToggleCategoryStatus(id);
+
+                    }
+                })
+            }
+        });
+
+    </script>
+}
