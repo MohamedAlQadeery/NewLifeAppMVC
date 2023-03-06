@@ -1,8 +1,9 @@
-﻿namespace Newlife.Web.Core.Models
+﻿using NewLife.Web.Core.Models;
+
+namespace Newlife.Web.Core.Models
 {
-    public class Coach
+    public class Coach : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -20,6 +21,5 @@
         public string? Whatsapp { get; set; }
         //end contact info
 
-        public bool IsActive { get; set; } = true;
     }
 }
