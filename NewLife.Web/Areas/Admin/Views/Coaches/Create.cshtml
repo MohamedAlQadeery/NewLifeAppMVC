@@ -36,6 +36,50 @@
     <div class="card-body">
         <form method="post" asp-controller="Coaches" asp-action="Create" enctype="multipart/form-data">
            
+           
+        <div class="row ">
+            <div class="col-md-4">
+                    <!--begin::Image input-->
+                    <div class="image-input image-input-empty mb-5" data-kt-image-input="true"
+                         style="background-image: url(/assets/admin/images/image-placeholder.jpg)">
+                        <!--begin::Image preview wrapper-->
+                        <div class="image-input-wrapper w-150px h-200px"></div>
+                        <!--end::Image preview wrapper-->
+                        <!--begin::Edit button-->
+                        <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                               data-kt-image-input-action="change"
+                               data-bs-dismiss="click"
+                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                    <!--begin::Inputs-->
+                    <input type="file" asp-for="MainImage" accept=".png, .jpg, .jpeg" />
+                    <input type="hidden" name="avatar_remove" />
+                    <!--end::Inputs-->
+                </label>
+                        <!--end::Edit button-->
+                        <!--begin::Cancel button-->
+                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                              data-kt-image-input-action="cancel"
+                              data-bs-dismiss="click"
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                        <!--end::Cancel button-->
+                        <!--begin::Remove button-->
+                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                              data-kt-image-input-action="remove"
+                              data-bs-dismiss="click"
+                    <i class="bi bi-x fs-2"></i>
+                </span>
+                        <!--end::Remove button-->
+                    </div>
+
+                    <span asp-validation-for="MainImage" class="text-danger d-block"></span>
+
+                    <!--end::Image input-->
+
+            </div>
+        </div>
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="mb-5">
@@ -70,19 +114,6 @@
                 </div>
             </div>
             
-         <div class="row">
-                <div class="col-md-4">
-                    <div class="mb-5">
-                      
-                        <div class="form-floating mb-2">
-                            <input type="file" class="form-control" placeholder="Image" asp-for="MainImage" accept=".jpg,.jpeg,.png"
-                                   />
-                            <label asp-for="MainImage"></label>
-                        </div>
-                        <span asp-validation-for="MainImage" class="text-danger d-block"></span>
-                    </div>
-                </div>
-            </div>
         
             <div class="row">
                 <div class="col-md-8">
