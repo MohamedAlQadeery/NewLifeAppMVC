@@ -10,6 +10,8 @@ namespace Newlife.Web.Core.Models
 
         public List<CoachAttachment> Attachments { get; set; }
 
+        public string MainImage { get; set; }
+
         // contact info
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }

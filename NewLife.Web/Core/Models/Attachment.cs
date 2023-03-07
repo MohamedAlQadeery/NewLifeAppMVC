@@ -7,7 +7,7 @@ namespace Newlife.Web.Core.Models
     
         public string Url { get; set; }
         public string ThumbnailUrl { get; set; }
-        public string PublicId { get; set; }
+        public string? PublicId { get; set; }
 
         public bool IsImage { get; set; }
        

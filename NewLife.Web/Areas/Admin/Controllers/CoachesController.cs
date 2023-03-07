@@ -24,5 +24,23 @@ namespace NewLife.Web.Areas.Admin.Controllers
 
             return View(coachesVM);
         }
+
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(new CreateCoachViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateCoachViewModel createCoachViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(createCoachViewModel);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
