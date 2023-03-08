@@ -70,5 +70,20 @@ namespace NewLife.Web.Areas.Admin.Controllers
             await _unitOfWork.SaveChanges();
             return Ok(updatedCoach);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteCoach(int id)
+        {
+            var coachToDelete = await _unitOfWork.Coaches.GetByIdAsync(id);
+            if(coachToDelete == null) { return NotFound(); }
+
+             _unitOfWork.Coaches.Delete(coachToDelete);
+            await _unitOfWork.SaveChanges();
+
+            TempData["msg"] = "تم الحذف بنجاح";
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -63,6 +63,11 @@
             <!--end::Menu item-->  
           <!--begin::Menu item-->
             <div class="menu-item px-3">
+               
+                <form id="js-deleteCoachForm-@Model.Id" asp-action="DeleteCoach" method="post" asp-controller="Coaches" class="d-none">
+                    <input type="hidden" name="id" value="@Model.Id"/>
+                </form>
+
                 <a href="#" class="menu-link px-3 js-delete-btn" data-id="@Model.Id">
                     حذف
                 </a>

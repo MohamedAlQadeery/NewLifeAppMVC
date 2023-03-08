@@ -37,11 +37,11 @@
 
         @if (!Model.Coaches.Any())
         {
-                <div class="alert alert-dismissible bg-light-warning border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 ">
+            <div class="alert alert-dismissible bg-light-warning border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 ">
                 <!--begin::Icon-->
                 <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
                 <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen044.svg-->
-    <span class="svg-icon  svg-icon-2hx svg-icon-warning">
+                <span class="svg-icon  svg-icon-2hx svg-icon-warning">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
                         <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor" />
@@ -115,7 +115,35 @@
         });
 
 
-         function ToggleStatus(id) {
+
+        document.querySelector('body').addEventListener('click',function(e){
+            e.preventDefault();
+          
+            if (event.target.classList.contains('js-delete-btn')) {
+
+                let id = event.target.dataset.id;
+
+                Swal.fire({
+                    title: 'هل انت متأكد من حذف المدرب ؟',
+                    text: "سيتم حذف جميع البيانات المتعلقة به ايضا",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'نعم,متأكد',
+                    cancelButtonText: 'الغاء',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.querySelector(`#js-deleteCoachForm-${id}`).submit();
+                    }
+                })
+             
+            }
+            
+          
+        });
+
+        function ToggleStatus(id) {
             fetch(`/Admin/Coaches/ToggleStatus/${id}`, {
                 method: 'post',
                 headers: {
@@ -128,36 +156,30 @@
                 showToastrInfoMessage('تم تحديث الحالة بنجاح !')
                 UpdateStatusSpan(data);
 
-               
-
-
-
-            
-
             })
                 .catch(err => {
                     console.log(err);
                     showToastrErrorMessage();
                 });
         }
-   
-                    
-         function UpdateStatusSpan(response){
-              let rowToUpdate = document.querySelector(`.js-row-${response.id}`);
-                let spanToUpdate = rowToUpdate.children.item(3).querySelector('span');
-                if(!response.isActive){
-                    spanToUpdate.classList.remove('badge-light-success');
-                    spanToUpdate.classList.add('badge-light-danger');
-                    spanToUpdate.textContent='غير نشط';
-                }else{
-                    spanToUpdate.classList.remove('badge-light-danger');
-                    spanToUpdate.classList.add('badge-light-success');
-                    spanToUpdate.textContent='نشط';
 
-                }
-                ApplyRowAnimation(rowToUpdate);
 
-         }           
-                    
-     </script>
+        function UpdateStatusSpan(response) {
+            let rowToUpdate = document.querySelector(`.js-row-${response.id}`);
+            let spanToUpdate = rowToUpdate.children.item(3).querySelector('span');
+            if (!response.isActive) {
+                spanToUpdate.classList.remove('badge-light-success');
+                spanToUpdate.classList.add('badge-light-danger');
+                spanToUpdate.textContent = 'غير نشط';
+            } else {
+                spanToUpdate.classList.remove('badge-light-danger');
+                spanToUpdate.classList.add('badge-light-success');
+                spanToUpdate.textContent = 'نشط';
+
+            }
+            ApplyRowAnimation(rowToUpdate);
+
+        }
+
+    </script>
 }
