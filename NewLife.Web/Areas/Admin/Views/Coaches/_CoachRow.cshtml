@@ -10,6 +10,7 @@
     </td>
 
     <td>@Model.Name</td>
+    <td>@Model.Email</td>
     <td>
         <span class="badge badge-light-@(Model.IsActive ? "success" : "danger")">
             @(Model.IsActive ? "نشط" : "غير نشط")
@@ -17,8 +18,7 @@
 
         </span>
     </td>
-    <td>created at</td>
-    <td>updated at</td>
+    <td>@Model.CreatedAt.ToString()</td>
     <td>
 
         <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary " data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">

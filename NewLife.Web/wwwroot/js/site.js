@@ -11,3 +11,28 @@ logoutBtn.addEventListener('click', function (e) {
 
 })
 
+
+//Start of toastr Messages
+toastr.options = {
+    "progressBar": true,
+    "positionClass": "toastr-top-center",
+    "preventDuplicates": true,
+};
+
+function showToastrInfoMessage(message = 'تم الحفظ بنجاح') {
+    toastr.info(message);
+
+}
+
+
+
+function showToastrErrorMessage(message = 'حدث خطأ في العملية') {
+    toastr.error(message);
+
+}
+
+const tmpMessage = document.querySelector('#msg').textContent;
+if (tmpMessage != '') {
+    showToastrInfoMessage(tmpMessage);
+}
+

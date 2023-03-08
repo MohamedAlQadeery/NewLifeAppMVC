@@ -50,14 +50,25 @@ namespace NewLife.Web.Areas.Admin.Controllers
            var createdCoach= await _unitOfWork.Coaches.AddAsync(coachToCreate);
            if (await _unitOfWork.SaveChanges() <= 0)
             {
-                TempData["error"] = "حدث خطأ في الاضافة";
+                TempData["msg"] = "حدث خطأ في الاضافة";
                 return View(createCoachViewModel);
 
             }
 
-            TempData["success"] = "تمت الاضافة بنجاح";
+            TempData["msg"] = "تمت الاضافة بنجاح";
 
             return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleStatus(int id)
+        {
+            var coach = await _unitOfWork.Coaches.GetByIdAsync(id);
+            if(coach == null) { return NotFound(); }
+            var updatedCoach = _unitOfWork.Coaches.ToggleStatus(coach.Id);
+            await _unitOfWork.SaveChanges();
+            return Ok(updatedCoach);
         }
     }
 }

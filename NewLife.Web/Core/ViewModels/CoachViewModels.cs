@@ -17,6 +17,7 @@ namespace NewLife.Web.Core.ViewModels
 
         public string MainImage { get; set; }
 
+        public DateTime CreatedAt { get; set; }
         public bool IsActive { get; set; }
     }
 

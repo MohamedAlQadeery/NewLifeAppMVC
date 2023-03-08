@@ -53,9 +53,9 @@ await app.Services.SeedAdminAndRolesData();
 
 app.UseRequestLocalization(options =>
 {
-    options.AddSupportedCultures(new string[] { "ar-SA", "en-US" });
-    options.AddSupportedUICultures(new string[] { "ar-SA", "en-US" });
-    options.SetDefaultCulture("ar-SA");
+    options.AddSupportedCultures(new string[] { "ar-AE", "en-US" });
+    options.AddSupportedUICultures(new string[] { "ar-AE", "en-US" });
+    options.SetDefaultCulture("ar-AE");
 });
 
 app.UseEndpoints(endpoints =>

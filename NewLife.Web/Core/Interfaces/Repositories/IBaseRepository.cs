@@ -15,9 +15,11 @@ namespace Newlife.Web.Core.Interfaces.Repositories
         Task<T> AddAsync(T entity);
 
         T Update(T entity);
+         T ToggleStatus(int id);
         void Delete(T entity);
       
         Task<int> CountAsync();
         Task<int> CountAsync(Expression<Func<T, bool>> criteria);
+
     }
 }

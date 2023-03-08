@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newlife.Web.Core.Interfaces.Repositories;
+using NewLife.Web.Core.Models;
 using NewLife.Web.Data;
 using System.Linq.Expressions;
 
@@ -83,6 +84,16 @@ namespace Newlife.Web.Repositories
         public async Task<int> CountAsync(Expression<Func<T, bool>> criteria)
         {
             return await _context.Set<T>().CountAsync(criteria);
+        }
+
+        public T ToggleStatus(int id)
+        {
+            var entity = _context.Set<T>().Find(id);
+            var model = entity as BaseModel;
+            model.IsActive = !model.IsActive;
+            _context.Set<T>().Update(entity);
+            
+            return entity;
         }
     }
 }

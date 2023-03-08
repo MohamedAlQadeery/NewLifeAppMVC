@@ -66,9 +66,9 @@
                         <tr class="fw-bold fs-6 text-gray-800">
                             <th>الصورة الرئيسية</th>
                             <th>الاسم</th>
+                            <th>البريد الالكتروني</th>
                             <th>الحالة</th>
                             <th>تاريخ الاضافة</th>
-                            <th>تاريخ اخر تحديث</th>
                             <th>العملية</th>
                         </tr>
                     </thead>
@@ -94,7 +94,6 @@
         document.querySelector('body').addEventListener('click', function (event) {
             if (event.target.classList.contains('js-toggle-btn')) {
                 event.preventDefault();
-                console.log(event);
                 let id = event.target.dataset.id;
 
                 Swal.fire({
@@ -108,12 +107,32 @@
                     cancelButtonText: 'الغاء',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        ToggleCategoryStatus(id);
+                        ToggleStatus(id);
 
                     }
                 })
             }
         });
 
+
+         function ToggleStatus(id) {
+            fetch(`/Admin/Coaches/ToggleStatus/${id}`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+
+            }).then(res => res.json()).then(data => {
+                console.log(data);
+                showToastrInfoMessage('تم تحديث الحالة بنجاح !')
+                //UpdateStatusLabelForCategory(data);
+
+            })
+                .catch(err => {
+                    console.log(err);
+                    showToastrErrorMessage();
+                });
+        }
     </script>
 }
