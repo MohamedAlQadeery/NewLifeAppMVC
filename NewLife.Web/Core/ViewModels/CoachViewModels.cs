@@ -1,4 +1,5 @@
-﻿using Newlife.Web.Core.Models;
+﻿using Mapster;
+using Newlife.Web.Core.Models;
 using NewLife.Web.Resources;
 using System.ComponentModel.DataAnnotations;
 
@@ -37,6 +38,9 @@ namespace NewLife.Web.Core.ViewModels
 
         public List<IFormFile>? Attachments { get; set; }
 
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+        [Display(Name="صورة الرئيسية")]
+        [AdaptIgnore]
         public IFormFile MainImage { get; set; }
 
         // contact info

@@ -1,7 +1,9 @@
 ﻿using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Newlife.Web.Core.Interfaces;
+using Newlife.Web.Core.Models;
 using NewLife.Web.Core.ViewModels;
+using NewLife.Web.Services.Interfaces;
 
 namespace NewLife.Web.Areas.Admin.Controllers
 {
@@ -10,11 +12,13 @@ namespace NewLife.Web.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IImageService _imageService;
 
-        public CoachesController(IUnitOfWork unitOfWork,IMapper mapper)
+        public CoachesController(IUnitOfWork unitOfWork,IMapper mapper,IImageService imageService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         public async Task<IActionResult> Index()
@@ -33,12 +37,25 @@ namespace NewLife.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateCoachViewModel createCoachViewModel)
+        public async Task<IActionResult> Create(CreateCoachViewModel createCoachViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(createCoachViewModel);
             }
+
+            var coachToCreate = _mapper.Map<Coach>(createCoachViewModel);
+            coachToCreate.MainImage = await _imageService.UploadImageAsync(createCoachViewModel.MainImage);
+
+           var createdCoach= await _unitOfWork.Coaches.AddAsync(coachToCreate);
+           if (await _unitOfWork.SaveChanges() <= 0)
+            {
+                TempData["error"] = "حدث خطأ في الاضافة";
+                return View(createCoachViewModel);
+
+            }
+
+            TempData["success"] = "تمت الاضافة بنجاح";
 
             return RedirectToAction(nameof(Index));
         }

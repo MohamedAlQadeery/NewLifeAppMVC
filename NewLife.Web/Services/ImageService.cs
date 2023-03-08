@@ -9,7 +9,7 @@ namespace NewLife.Web.Services
 
         private const string uploadDir = "./wwwroot/images";
 
-        public async Task<string> UploadImage(IFormFile imageFile)
+        public async Task<string> UploadImageAsync(IFormFile imageFile)
         {
             if (!imageFile.ContentType.StartsWith("image/"))
             {
@@ -41,20 +41,20 @@ namespace NewLife.Web.Services
                 await imageFile.CopyToAsync(fileStream);
             }
 
-            await ResizeImage(filePath, uploadDir, fileName);
+            await ResizeImageAsync(filePath, uploadDir, fileName);
 
 
         }
 
 
 
-        public async Task ResizeImage(string filePath, string uploadedFolder, string fileName)
+        public async Task ResizeImageAsync(string filePath, string uploadedFolder, string fileName)
         {
             var folderMedi = Path.Combine(uploadedFolder, "thumbs", "med", fileName);
             var folderSmall = Path.Combine(uploadedFolder, "thumbs", "small", fileName);
             var folderBig = Path.Combine(uploadedFolder, "thumbs", "big", fileName);
 
-            //application/pdf
+            
             //images/jpg
             using (Image input = Image.Load(filePath))
             {

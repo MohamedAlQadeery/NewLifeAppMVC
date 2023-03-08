@@ -2,8 +2,8 @@
 {
     public interface IImageService
     {
-        Task<string> UploadImage(IFormFile imageFile);
+        Task<string> UploadImageAsync(IFormFile imageFile);
 
-        Task ResizeImage(string filePath, string uploadedFolder, string fileName);
+        Task ResizeImageAsync(string filePath, string uploadedFolder, string fileName);
     }
 }

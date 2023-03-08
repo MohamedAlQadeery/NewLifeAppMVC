@@ -5,6 +5,7 @@ using Newlife.Web.Repositories;
 using NewLife.Web.Data;
 using NewLife.Web.Mapping;
 using NewLife.Web.Seed;
+using NewLife.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddMapping();
+builder.Services.AddMapping().AddAppServices();
 builder.Services.AddControllersWithViews().AddViewLocalization(op => op.ResourcesPath = "Resources");
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
