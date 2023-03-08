@@ -15,7 +15,8 @@ namespace NewLife.Web.Core.ViewModels
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
 
-  
+        public string MainImage { get; set; }
+
         public bool IsActive { get; set; }
     }
 
