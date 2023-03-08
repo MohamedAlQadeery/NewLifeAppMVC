@@ -22,7 +22,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddMapping();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddViewLocalization(op => op.ResourcesPath = "Resources");
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
 
 var app = builder.Build();
 
@@ -48,6 +50,12 @@ app.UseAuthorization();
 
 await app.Services.SeedAdminAndRolesData();
 
+app.UseRequestLocalization(options =>
+{
+    options.AddSupportedCultures(new string[] { "ar-SA", "en-US" });
+    options.AddSupportedUICultures(new string[] { "ar-SA", "en-US" });
+    options.SetDefaultCulture("ar-SA");
+});
 
 app.UseEndpoints(endpoints =>
 {

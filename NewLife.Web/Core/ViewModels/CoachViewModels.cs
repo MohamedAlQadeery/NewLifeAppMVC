@@ -1,4 +1,6 @@
 ﻿using Newlife.Web.Core.Models;
+using NewLife.Web.Resources;
+using System.ComponentModel.DataAnnotations;
 
 namespace NewLife.Web.Core.ViewModels
 {
@@ -27,7 +29,9 @@ namespace NewLife.Web.Core.ViewModels
 
     public class CreateCoachViewModel
     {
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
         public string Name { get; set; }
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
 
         public string Description { get; set; }
 
@@ -37,7 +41,10 @@ namespace NewLife.Web.Core.ViewModels
 
         // contact info
         public string? PhoneNumber { get; set; }
-        public string? Email { get; set; }
+        [EmailAddress(ErrorMessageResourceName = "email_error", ErrorMessageResourceType = typeof(SharedResource))]
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+
+        public string Email { get; set; }
 
       
 

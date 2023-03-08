@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using NewLife.Web.Resources;
 
 namespace NewLife.Web.Areas.Identity.Pages.Account
 {
@@ -67,24 +68,26 @@ namespace NewLife.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+
             // [EmailAddress]
-            [Display(Name ="Username/Email")]
+            [Display(Name ="البريد الالكتروني/اسم المستخدم")]
             public string Username { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [DataType(DataType.Password)]
+            [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+            [Display(Name = "كلمة المرور")]
+            [DataType(DataType.Password, ErrorMessageResourceName = "password_type_error", ErrorMessageResourceType = typeof(SharedResource))]
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "تذكرني؟")]
             public bool RememberMe { get; set; }
         }
 
