@@ -38,7 +38,6 @@ namespace NewLife.Web.Core.ViewModels
 
         public string Description { get; set; }
 
-        public List<IFormFile>? Attachments { get; set; }
 
         [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
         [Display(Name="صورة الرئيسية")]
@@ -53,6 +52,48 @@ namespace NewLife.Web.Core.ViewModels
         public string Email { get; set; }
 
       
+
+    }
+
+
+
+    public class EditCoachViewModel
+    {
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+        [Display(Name="الاسم")]
+        public string Name { get; set; }
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+        [Display(Name = "الوصف")]
+        public string Description { get; set; }
+
+        [Display(Name = "صورة الرئيسية")]
+        [AdaptIgnore]
+        public IFormFile? MainImage { get; set; }
+
+        [Display(Name = "البريد الإلكتروني")]
+        [EmailAddress(ErrorMessageResourceName = "email_error", ErrorMessageResourceType = typeof(SharedResource))]
+        [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
+        public string Email { get; set; }
+
+        [Display(Name = "رقم الهاتف")]
+        public string? PhoneNumber { get; set; }
+
+        [Display(Name = "فيسبوك")]
+        public string? Facebook { get; set; }
+
+        [Display(Name = "إنستغرام")]
+        public string? Instagram { get; set; }
+
+        [Display(Name = "لينكدإن")]
+        public string? Linkedin { get; set; }
+
+        [Display(Name = "تويتر")]
+        public string? Twitter { get; set; }
+
+        [Display(Name = "واتساب")]
+        public string? Whatsapp { get; set; }
+
+        public string MainImagePreview { get; set; }
 
     }
 

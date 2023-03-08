@@ -85,5 +85,20 @@ namespace NewLife.Web.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var coach = await _unitOfWork.Coaches.GetByIdAsync(id);
+            if(coach == null)
+            {
+                TempData["msg"] = "لم يتم العثور على المدرب";
+                return RedirectToAction(nameof(Index));
+            }
+            var editCoachVm = _mapper.Map<EditCoachViewModel>(coach);
+
+            return View(editCoachVm);
+        }
     }
 }

@@ -44,16 +44,14 @@
                 </div>
             </div>
             <!--end::Heading-->
-           @* <!--begin::Menu item-->
+            <!--begin::Menu item-->
             <div class="menu-item px-3">
-                <a href="#" class="menu-link px-3 js-render-modal"
-                   data-modal-title="Edit Category"
-                   data-url="/categories/edit/@Model.Id"
-                   data-id="@Model.Id">
-                    Edit
+                <a  asp-action="Edit" asp-controller="Coaches" asp-route-id="@Model.Id" class="menu-link px-3" >
+                    تعديل 
                 </a>
             </div>
-            <!--end::Menu item-->*@
+            <!--end::Menu item-->
+  
             <!--begin::Menu item-->
             <div class="menu-item px-3">
                 <a href="#" class="menu-link px-3 js-toggle-btn" data-id="@Model.Id">
