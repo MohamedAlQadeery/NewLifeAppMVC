@@ -126,7 +126,13 @@
             }).then(res => res.json()).then(data => {
                 console.log(data);
                 showToastrInfoMessage('تم تحديث الحالة بنجاح !')
-                //UpdateStatusLabelForCategory(data);
+                UpdateStatusSpan(data);
+
+               
+
+
+
+            
 
             })
                 .catch(err => {
@@ -134,5 +140,24 @@
                     showToastrErrorMessage();
                 });
         }
-    </script>
+   
+                    
+         function UpdateStatusSpan(response){
+              let rowToUpdate = document.querySelector(`.js-row-${response.id}`);
+                let spanToUpdate = rowToUpdate.children.item(3).querySelector('span');
+                if(!response.isActive){
+                    spanToUpdate.classList.remove('badge-light-success');
+                    spanToUpdate.classList.add('badge-light-danger');
+                    spanToUpdate.textContent='غير نشط';
+                }else{
+                    spanToUpdate.classList.remove('badge-light-danger');
+                    spanToUpdate.classList.add('badge-light-success');
+                    spanToUpdate.textContent='نشط';
+
+                }
+                ApplyRowAnimation(rowToUpdate);
+
+         }           
+                    
+     </script>
 }

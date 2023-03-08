@@ -36,3 +36,16 @@ if (tmpMessage != '') {
     showToastrInfoMessage(tmpMessage);
 }
 
+
+
+
+//start of animation functions
+function ApplyRowAnimation(row) {
+    row.classList.add('animate__animated', 'animate__bounceInLeft');
+    row.addEventListener('animationend', () => {
+        row.classList.remove('animate__animated', 'animate__bounceInLeft');
+
+    });
+}
+
+//end of animation functions
