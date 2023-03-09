@@ -59,6 +59,9 @@ namespace NewLife.Web.Core.ViewModels
 
     public class EditCoachViewModel
     {
+        [Required]
+        public int Id { get; set; }
+
         [Required(ErrorMessageResourceName = "required_error", ErrorMessageResourceType = typeof(SharedResource))]
         [Display(Name="الاسم")]
         public string Name { get; set; }

@@ -97,8 +97,39 @@ namespace NewLife.Web.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             var editCoachVm = _mapper.Map<EditCoachViewModel>(coach);
+         
 
             return View(editCoachVm);
         }
+
+        [HttpPost]
+        public async Task<IActionResult>Edit(EditCoachViewModel editCoachViewModel)
+        {
+            if(!ModelState.IsValid) { return View(editCoachViewModel); }
+            var coachToUpdate = _mapper.Map<Coach>(editCoachViewModel);
+            if(editCoachViewModel.MainImage != null)
+            {
+                coachToUpdate.MainImage = await _imageService.UploadImageAsync(editCoachViewModel.MainImage);
+            }
+            else
+            {
+                // no image was uploaded
+                coachToUpdate.MainImage = editCoachViewModel.MainImagePreview;
+            }
+          
+
+             _unitOfWork.Coaches.Update(coachToUpdate);
+
+            if(await _unitOfWork.SaveChanges() <= 0)
+            {
+                TempData["msg"] = "حدث خطأ في تحديث البيانات";
+                return View(editCoachViewModel);
+            }
+            TempData["msg"] = "تم تحديث البيانات بنجاح";
+            return RedirectToAction(nameof(Index));
+
+        }
+
+
     }
 }
