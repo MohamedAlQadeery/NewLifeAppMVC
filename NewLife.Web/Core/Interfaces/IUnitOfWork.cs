@@ -6,6 +6,7 @@ namespace Newlife.Web.Core.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         public IBaseRepository<Coach> Coaches { get; }
+        public IBaseRepository<CoachAttachment> CoachAttachments { get; }
 
         Task<int> SaveChanges();
     }

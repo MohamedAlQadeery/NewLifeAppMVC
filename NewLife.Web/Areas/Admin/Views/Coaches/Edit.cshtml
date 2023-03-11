@@ -195,7 +195,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button id="js-submitFormBtn" type="submit" class="btn btn-primary">
                 <span class="indicator-label">
                     تحديث
                 </span>
@@ -210,4 +210,24 @@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 
+    <script>
+
+
+        $(document).ready(function () {
+         
+
+
+
+            //Submit button
+            const submitBtn = document.querySelector('#js-submitFormBtn');
+
+            // Handle button click event
+            submitBtn.addEventListener("click", function () {
+                // Activate indicator
+                submitBtn.setAttribute("data-kt-indicator", "on");
+                console.log('btn clicked');
+
+            });
+        });
+    </script>
 }

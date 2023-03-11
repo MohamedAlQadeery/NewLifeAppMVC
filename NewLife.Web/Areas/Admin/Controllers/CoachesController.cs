@@ -140,9 +140,11 @@ namespace NewLife.Web.Areas.Admin.Controllers
 
 
         [HttpGet("Admin/Coaches/Attachments/{id:int}/Create")]
-        public IActionResult AttachmentsCreate(int id)
+        public async Task<IActionResult> AttachmentsCreate(int id)
         {
-            return View();
+            var coach = await _unitOfWork.Coaches.GetByIdAsync(id);
+
+            return View(new CreateCoachAttachmentViewModel { CoachId = coach.Id,CoachName = coach.Name});
         }
 
 
