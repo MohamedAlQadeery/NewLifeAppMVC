@@ -214,20 +214,9 @@
 
 
         $(document).ready(function () {
-         
+            AddLoadingIndicatorButton('js-submitFormBtn');
 
-
-
-            //Submit button
-            const submitBtn = document.querySelector('#js-submitFormBtn');
-
-            // Handle button click event
-            submitBtn.addEventListener("click", function () {
-                // Activate indicator
-                submitBtn.setAttribute("data-kt-indicator", "on");
-                console.log('btn clicked');
-
-            });
+          
         });
     </script>
 }

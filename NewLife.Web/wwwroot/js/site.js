@@ -42,6 +42,24 @@ if (tmpMessage != '') {
 }
 
 
+
+///Start Loading Indicator for buttons
+
+function AddLoadingIndicatorButton(id) {
+    //Submit button
+    const submitBtn = document.querySelector(`#${id}`);
+
+    // Handle button click event
+    submitBtn.addEventListener("click", function () {
+        // Activate indicator
+        submitBtn.setAttribute("data-kt-indicator", "on");
+
+    });
+}
+
+/// End Loading Indicator for buttons
+
+
 //Datatable
 // Class definition
 var KTDatatable = function () {
@@ -158,3 +176,5 @@ $(document).ready(function () {
 
    
 });
+
+
