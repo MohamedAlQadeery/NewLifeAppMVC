@@ -11,6 +11,8 @@ namespace NewLife.Web.Mapping
             config.NewConfig<Coach, EditCoachViewModel>()
                 .Map(vm => vm.MainImagePreview, c => c.MainImage);
             
+          
+            
 
         }
     }

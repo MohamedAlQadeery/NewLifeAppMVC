@@ -132,6 +132,21 @@ namespace NewLife.Web.Areas.Admin.Controllers
 
 
 
+        [HttpGet("Admin/Coaches/Attachments/{id:int}")]
+        public IActionResult Attachments(int id)
+        {
+            return View();
+        }
+
+
+        [HttpGet("Admin/Coaches/Attachments/{id:int}/Create")]
+        public IActionResult AttachmentsCreate(int id)
+        {
+            return View();
+        }
+
+
+
 
     }
 }

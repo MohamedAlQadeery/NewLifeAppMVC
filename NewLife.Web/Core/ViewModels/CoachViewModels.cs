@@ -100,4 +100,30 @@ namespace NewLife.Web.Core.ViewModels
 
     }
 
+
+    public class CoachAttachmentViewModel
+    {
+        public int Id { get; set; }
+        public int CoachId { get; set; }
+
+        public string Url { get; set; }
+        public string ThumbnailUrl { get; set; }
+        public string? PublicId { get; set; }
+
+        public bool IsImage { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsActive { get; set; }
+    }
+
+    public class CreateCoachAttachmentViewModel
+    {
+        public int CoachId { get; set; }
+        public string CoachName { get; set; }
+        public bool IsImage { get; set; }
+
+        public List<IFormFile>? Images { get; set; }
+
+        public List<string>? VideosLinks { get; set; }
+
+    }
 }

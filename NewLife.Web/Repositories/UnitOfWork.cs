@@ -9,11 +9,13 @@ namespace Newlife.Web.Repositories
     {
         private readonly ApplicationDbContext _context;
         public IBaseRepository<Coach> Coaches { get; private set; }
+        public IBaseRepository<CoachAttachment> CoachesAttachments { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Coaches = new BaseRepository<Coach>(_context);
+            CoachesAttachments = new BaseRepository<CoachAttachment>(_context);
         }
 
        
